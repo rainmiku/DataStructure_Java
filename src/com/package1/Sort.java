@@ -84,6 +84,32 @@ public class Sort {
             merged[k++] = left[i++];
     }
 
+    public void quickSort(int[] numbers){
+        quickSort(numbers,0,numbers.length-1);
+    }
+
+    private void quickSort(int[] numbers, int start, int end){
+        if (start >= end)
+            return;
+
+        int b = partition(numbers,start,end);
+        quickSort(numbers,start,b-1);
+        quickSort(numbers,b+1, end);
+    }
+
+    private int partition(int[] numbers, int start, int end){
+        int pivot = numbers[end];
+        int b = start - 1;
+
+        for (int i = start; i <= end; i++) {
+            if (numbers[i] > pivot)
+                continue;
+            b++;
+            swap(numbers,b,i);
+        }
+        return b;
+    }
+
 
     private void swap(int[] numbers, int a, int b){
         var temp = numbers[a];

@@ -12,7 +12,7 @@ public class Main {
 
         var sort = new Sort();
 
-        sort.mergeSort(a);
+        sort.quickSort(a);
 
         System.out.println(Arrays.toString(a));
 
