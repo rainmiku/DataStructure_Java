@@ -1,6 +1,10 @@
 package com.package1;
 
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Sort {
 
     public void bubleSort(int[] numbers){
@@ -109,6 +113,48 @@ public class Sort {
         }
         return b;
     }
+
+    public void countSort(int[] numbers){
+
+        var length = maxInArray(numbers)+1;
+        var counts = new int[length];
+        for (var number:numbers)
+            counts[number]++;
+        int index = 0;
+        for (int i = 0; i < counts.length; i++) {
+            for (int j = 0; j < counts[i]; j++)
+                numbers[index++] = i;
+        }
+    }
+
+    private int maxInArray(int[] numbers){
+        int max = numbers[0];
+        for (var number:numbers)
+            if (number > max)
+                max = number;
+        return max;
+    }
+
+    public void bucketSort(int[] numbers, int bucketNumber){
+        List<List<Integer>> buckets = new ArrayList<>();
+
+        int max = maxInArray(numbers);
+
+        for (int i = 0; i < bucketNumber; i++)
+            buckets.add(new ArrayList<>());
+
+        for (var number : numbers)
+            buckets.get(number/(max/bucketNumber+1)).add(number);
+
+        int index = 0;
+        for (var bucket : buckets) {
+            Collections.sort(bucket);
+            for (int i = 0; i < bucket.size(); i++) {
+                numbers[index++] = bucket.get(i);
+            }
+        }
+    }
+
 
 
     private void swap(int[] numbers, int a, int b){

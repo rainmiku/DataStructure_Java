@@ -12,7 +12,7 @@ public class Main {
 
         var sort = new Sort();
 
-        sort.quickSort(a);
+        sort.bucketSort(a, 5);
 
         System.out.println(Arrays.toString(a));
 
