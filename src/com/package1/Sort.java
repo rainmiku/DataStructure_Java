@@ -144,7 +144,7 @@ public class Sort {
             buckets.add(new ArrayList<>());
 
         for (var number : numbers)
-            buckets.get(number/(max/bucketNumber+1)).add(number);
+            buckets.get(bucketHash(number,bucketNumber,max)).add(number);
 
         int index = 0;
         for (var bucket : buckets) {
@@ -155,7 +155,9 @@ public class Sort {
         }
     }
 
-
+    private int bucketHash(int number, int bucketNumber, int max){
+        return number/(max/bucketNumber+1);
+    }
 
     private void swap(int[] numbers, int a, int b){
         var temp = numbers[a];
