@@ -8,13 +8,13 @@ public class Main {
     public static void main(String[] args) {
 
 
-        int[] a = {3,2,4,1,5};
+        int[] a = {1,2,3,4,5};
 
-        var sort = new Sort();
+        Search search =  new Search();
 
-        sort.bucketSort(a, 5);
+        var index = search.binarySearchIterative(a, 6);
 
-        System.out.println(Arrays.toString(a));
+        System.out.println(index);
 
         System.out.println("done");
 
