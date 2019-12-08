@@ -43,4 +43,38 @@ public class Search {
 
         return -1;
     }
+
+    public int jumpSearch(int[] numbers, int target){
+        int blockSize =(int) Math.sqrt(numbers.length);
+        int start = 0;
+        int next = blockSize;
+
+        while (start <= numbers.length -1){
+            if (numbers[next-1] < target){
+                start = next;
+                next = Math.min(start + blockSize, numbers.length);
+            }
+            else {
+                for (int i = start; i < next; i++) {
+                    if (numbers[i] == target )
+                        return i;
+                }
+                return -1;
+            }
+        }
+        return -1;
+    }
+
+    public int exponentialSearch(int[] numbers, int target){
+
+        if (numbers[numbers.length-1] < target)
+            return -1;
+        int last = 0;
+        int bound = 2;
+        while (numbers[bound] < target && bound < numbers.length){
+            last = bound;
+            bound = Math.min(bound*2, numbers.length-1);
+        }
+        return binarySearch(numbers,target,last,bound);
+    }
 }
